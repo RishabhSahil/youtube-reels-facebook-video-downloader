@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+	<title>YouTube MP4 Download</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="/static/in.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/Youtube.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+	input[type=text], select, textarea
+	{
+	    width: 50%;
+	    padding: 12px;
+	    border: 2px solid red;
+	    border-radius: 4px;
+	    resize: vertical;
+	}
+	input[type=text]:focus 
+	{
+	    border: 2px solid #555;
+	}
+
+	.container 
+	{
+		  margin-bottom: 10px;
+	}
+	.container label 
+	{
+		  position: relative;
+	}
+	.container span::before,
+	.container span::after 
+	{
+	  content: '';
+	  position: absolute;
+	  top: 0;
+	  bottom: 0;
+	  margin: auto;
+	}
+
+	/* Radio buttons */
+	.container span.radio:hover 
+	{
+	  cursor: pointer;
+	}
+	.container span.radio::before 
+	{
+		  left: -52px;
+		  width: 45px;
+		  height: 25px;
+		  background-color: #555555;
+		  border-radius: 50px;
+	}
+	.container span.radio::after 
+	{
+		  left: -49px;
+		  width: 17px;
+		  height: 17px;
+		  border-radius: 10px;
+		  background-color: #F83A18;
+		  transition: left .25s, background-color .25s;
+	}
+	input[type=radio] 
+	{
+	    margin: 4px 5px 0;
+	}
+	input[type="radio"]:checked + label span.radio::after 
+	{
+		  left: -27px;
+		  background-color: #4EFC53;
+	}
+	
+</style>
+
+<body onload=display_ct();>
+
+<div class="horizontal_navigation">
+	<ul>
+		<li class="hr"><a href="{{ url_for('home') }}">Home</a></li>
+		<li class="hr"><a href="{{ url_for('Download_reel') }}">Instagram</a></li>
+		<li class="hr"><a href="{{ url_for('Download_MP4') }}">MP4 Download</a></li>
+		<li class="hr"><a href="{{ url_for('Download_MP3') }}">MP3 Download</a></li>
+	</ul>
+</div>
+
+<div class="view" style="width: 50%;height: 20%">
+	<div class="slideshow">
+		<img src="https://www.pixelstalk.net/wp-content/uploads/2016/05/Youtube-Logo-Wallpapers-Free-Download.jpg" height="500px" width="200%">
+	</div>
+	<div class="slideshow">
+		<img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8eW91dHViZSUyMHRodW1ibmFpbHxlbnwwfHwwfHw%3D&w=1000&q=80" height="500px" width="200%">
+	</div>
+	<div class="slideshow">
+		<img src="https://images.pexels.com/videos/1841356/free-video-1841356.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" height="500px" width="200%">
+	</div>
+	<div class="slideshow">
+		<img src="https://besthqwallpapers.com/Uploads/28-11-2019/113456/thumb-youtube-red-logo-4k-red-brickwall-youtube-logo-brands.jpg" height="500px" width="200%">
+	</div>
+	<div class="slideshow">
+		<img src="https://i.pinimg.com/736x/91/74/05/917405caa4d20284e274d92edd6003fa.jpg" height="500px" width="200%">
+	</div>
+	<div class="slideshow">
+		<img src="https://cdn.dribbble.com/users/1579036/screenshots/3795714/image.png" height="500px" width="200%">
+	</div>
+
+</div>
+
+<div class="youtube_instagram" >
+
+	<div class="form" style="text-align: center;">
+			<form action="/download" method="post">
+				<input type="text" placeholder="Paste YouTube link here..." name="url">
+                      <br><br>
+					  {% for resol in resolutions[0:1] %}
+				             <div class="container">
+                                   <input type="radio" id="{{resol}}" name="resolution" value="{{resol}}" checked>
+								   <label for="{{resol}}"><span class="radio">{{resol}}</span></label>
+							 </div>
+                       {% endfor %}
+					   {% for resolution in resolutions[1:] %}
+				             <div class="container">
+                                   <input type="radio" id="{{resolution}}" name="resolution" value="{{resolution}}">
+								   <label for="{{resolution}}"><span class="radio">{{resolution}} {{filesize}}</span></label>
+							 </div>
+                       {% endfor %}
+
+
+				  <button class="button" style="vertical-align:middle"><span>Download MP4</span></button><br><br><br>
+              </form>
+  </div>
+</div>
+
+<footer class="footer">
+	<h4>Follow Me:</h4><br>
+	<a href="https://www.facebook.com/" class="fa fa-facebook" target="_blank"></a>
+<a href="https://twitter.com/" class="fa fa-twitter"target="_blank"></a>
+<a href="https://github.com/Rishabhsahil" class="fa fa-github" target="_blank" style="background-color: #E8EBE4"></a>
+<a href="https://www.linkedin.com/" class="fa fa-linkedin" target="_blank"></a>
+<a href="https://www.youtube.com/channel/UCvNJtprg0qKG8qG9LaLPBew" class="fa fa-youtube" target="_blank"></a>
+<a href="https://www.instagram.com/_rishabh_yaduvanshi_" class="fa fa-instagram" target="_blank" style="background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)"></a><br><br>
+<span id='ct'></span>
+    <script type="text/javascript">
+        function display_c()
+        {
+	        var refresh=1000;
+	        mytime=setTimeout('display_ct()',refresh)
+        }
+
+        function display_ct()
+        {
+			document.getElementById('ct').innerHTML = new Date();
+	        display_c();
+        }
+    </script>
+    <br><br>
+    <p>© copyright.All Rights Reserved</p>
+</footer>
+
+</body>
+
+<script type="text/javascript">
+	var number_of_image_slides=0;
+    Slider();
+    function Slider()
+    {
+	    var slides = document.getElementsByClassName("slideshow");
+	    for(var i=0;i<slides.length;i++)
+	    {
+	      slides[i].style.display = "none";
+	    }
+	    number_of_image_slides++;
+	    if (number_of_image_slides > slides.length)
+	    {
+	      number_of_image_slides = 1
+	    }
+	    slides[number_of_image_slides-1].style.display = "block";
+	    setTimeout('Slider()',2000);
+    }
+</script>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Instagram Post Download</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="/static/in.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/Youtube.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+	input[type=text], select, textarea
+	{
+	    width: 50%;
+	    padding: 12px;
+	    border: 2px solid red;
+	    border-radius: 4px;
+	    resize: vertical;
+	}
+	input[type=text]:focus 
+	{
+	    border: 2px solid #555;
+	}
+</style>
+
+<body onload=display_ct();>
+
+<div class="horizontal_navigation">
+	<ul>
+		<li class="hr"><a href="{{ url_for('home') }}">Home</a></li>
+		<li class="hr"><a href="{{ url_for('Download_MP4') }}">YouTube</a></li>
+		<li class="hr"><a href="{{ url_for('Download_reel') }}">Instagram Reel/Video</a></li>
+		<li class="hr"><a href="{{ url_for('Download_post') }}">Instagram Post</a></li>
+	</ul>
+</div>
+
+<div class="view" style="width: 50%;height: 20%">
+	<div class="slideshow">
+		<img src="https://wallpaperbat.com/img/616262-instagram-wallpaper.jpg" height="500px" width="200%">
+	</div>
+	<div class="slideshow">
+		<img src="https://images5.alphacoders.com/106/1068450.png" height="500px" width="200%">
+	</div>
+	<div class="slideshow">
+		<img src="https://9to5mac.com/wp-content/uploads/sites/6/2020/06/Instagram_Logo-1920_jifdwy.jpg?quality=82&strip=all" height="500px" width="200%">
+	</div>
+	<div class="slideshow">
+		<img src="https://media.gqmagazine.fr/photos/6113953281d58c5c5a45f397/16:9/w_2560%2Cc_limit/1234553005" height="500px" width="200%">
+	</div>
+	<div class="slideshow">
+		<img src="https://northeasternchronicle.in/wp-content/uploads/2021/08/Instagram.jpg" height="500px" width="200%">
+	</div>
+	<div class="slideshow">
+		<img src="https://igram.io/static/img/instagram-image.jpg" height="500px" width="200%">
+	</div>
+
+
+</div>
+
+<div class="youtube_instagram" >
+
+	<div class="form" style="text-align: center;">
+              <form action="/download_insta_post" method="post">
+                      <input type="text" name="URL" placeholder="Paste Instagram link here...">
+                      <br><br><br><br>
+                      <button class="button" style="vertical-align:middle"><span>Download Insta Post</span></button><br><br><br>
+              </form>
+   </div>
+</div>
+
+<footer class="footer">
+	<h4>Follow Me:</h4><br>
+	<a href="https://www.facebook.com/" class="fa fa-facebook" target="_blank"></a>
+<a href="https://twitter.com/" class="fa fa-twitter"target="_blank"></a>
+<a href="https://github.com/Rishabhsahil" class="fa fa-github" target="_blank" style="background-color: #E8EBE4"></a>
+<a href="https://www.linkedin.com/" class="fa fa-linkedin" target="_blank"></a>
+<a href="https://www.youtube.com/channel/UCvNJtprg0qKG8qG9LaLPBew" class="fa fa-youtube" target="_blank"></a>
+<a href="https://www.instagram.com/_rishabh_yaduvanshi_" class="fa fa-instagram" target="_blank" style="background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)"></a><br><br>
+<span id='ct'></span>
+    <script type="text/javascript">
+        function display_c()
+        {
+	        var refresh=1000;
+	        mytime=setTimeout('display_ct()',refresh)
+        }
+
+        function display_ct()
+        {
+			document.getElementById('ct').innerHTML = new Date();
+	        display_c();
+        }
+    </script>
+    <br><br>
+    <p>© copyright.All Rights Reserved</p>
+</footer>
+
+</body>
+
+<script type="text/javascript">
+	var number_of_image_slides=0;
+    Slider();
+    function Slider()
+    {
+	    var slides = document.getElementsByClassName("slideshow");
+	    for(var i=0;i<slides.length;i++)
+	    {
+	      slides[i].style.display = "none";
+	    }
+	    number_of_image_slides++;
+	    if (number_of_image_slides > slides.length)
+	    {
+	      number_of_image_slides = 1
+	    }
+	    slides[number_of_image_slides-1].style.display = "block";
+	    setTimeout('Slider()',2000);
+    }
+</script>
+
+</html>
